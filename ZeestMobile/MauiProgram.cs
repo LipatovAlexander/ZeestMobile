@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ZeestMobile.Infrastructure.EntityFramework;
 using ZeestMobile.Infrastructure.Migrations;
+using ZeestMobile.ViewModels;
 
 namespace ZeestMobile;
 
@@ -24,7 +25,7 @@ public static class MauiProgram
         builder.Services.AddDbContext<ApplicationContext>(options =>
         {
             options.UseSqlite(connectionString);
-        });
+        }, ServiceLifetime.Singleton);
 
         builder.Services.AddFluentMigratorCore()
             .ConfigureRunner(rb => rb
@@ -34,6 +35,9 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<TodoListsViewModel>();
 
         var app = builder.Build();
 
