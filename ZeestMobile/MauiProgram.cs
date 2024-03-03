@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FluentMigrator.Runner;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using ZeestMobile.Infrastructure.EntityFramework;
+using ZeestMobile.Infrastructure.Migrations;
 
 namespace ZeestMobile;
 
@@ -15,10 +19,30 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "zeest.db");
+        var connectionString = $"FileName={dbPath}";
+        builder.Services.AddDbContext<ApplicationContext>(options =>
+        {
+            options.UseSqlite(connectionString);
+        });
+
+        builder.Services.AddFluentMigratorCore()
+            .ConfigureRunner(rb => rb
+                .AddSQLite()
+                .WithGlobalConnectionString(connectionString)
+                .ScanIn(typeof(InitMigration).Assembly).For.Migrations());
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
-        return builder.Build();
+        var app = builder.Build();
+
+        using var scope = app.Services.CreateScope();
+
+        scope.ServiceProvider
+            .GetRequiredService<IMigrationRunner>()
+            .MigrateUp();
+        
+        return app;
     }
 }
