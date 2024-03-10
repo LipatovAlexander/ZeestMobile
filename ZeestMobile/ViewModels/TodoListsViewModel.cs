@@ -11,12 +11,16 @@ public class TodoListsViewModel : INotifyPropertyChanged
 {
     private readonly ApplicationContext _applicationContext;
 
-    public ObservableCollection<TodoList> TodoLists { get; set; }
+    public ObservableCollection<TodoListViewModel> TodoLists { get; set; }
 
     public TodoListsViewModel(ApplicationContext applicationContext)
     {
         _applicationContext = applicationContext;
-        TodoLists = new ObservableCollection<TodoList>(_applicationContext.TodoLists.ToList());
+        var lists = _applicationContext.TodoLists
+            .ToList()
+            .Select(l => new TodoListViewModel(l));
+        
+        TodoLists = new ObservableCollection<TodoListViewModel>(lists);
 
         AddItemCommand = new Command(AddTodoList);
     }
@@ -52,7 +56,7 @@ public class TodoListsViewModel : INotifyPropertyChanged
         _applicationContext.TodoLists.Add(todoList);
         _applicationContext.SaveChanges();
         
-        TodoLists.Add(todoList);
+        TodoLists.Add(new TodoListViewModel(todoList));
         OnPropertyChanged(nameof(TodoLists));
 
         NewListName = null!;

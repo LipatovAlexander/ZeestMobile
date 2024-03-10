@@ -10,24 +10,8 @@
         Padding="30,0"
         Spacing="25">
         
-        <HorizontalStackLayout Spacing="10">
-            <Entry x:Name="todoList" Placeholder="Todo list name" TextChanged="TodoList_OnTextChanged" Text="{Binding NewListName}" />
-            <Button Text="Add" Command="{Binding AddItemCommand}" />
-        </HorizontalStackLayout>
+        <Label>Home</Label>
         
-        <ListView ItemsSource="{Binding TodoLists}">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:TodoList">
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" FontSize="16" />
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </VerticalStackLayout>
 
 </ContentPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ZeestMobile.ViewModels"
+             x:Class="ZeestMobile.Pages.ToDoItemsPage"
+             x:DataType="viewModels:TodoListViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="ToDo Items">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior TextOverride="Back" IsVisible="True" />   
+    </Shell.BackButtonBehavior>
+    
+    <ContentPage.Content>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            
+            <Label>ToDoItems page</Label>
+            <Label Text="{Binding Name}" />
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

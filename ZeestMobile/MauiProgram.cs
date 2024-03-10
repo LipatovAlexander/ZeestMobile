@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ZeestMobile.Infrastructure.EntityFramework;
 using ZeestMobile.Infrastructure.Migrations;
+using ZeestMobile.Pages;
 using ZeestMobile.ViewModels;
 
 namespace ZeestMobile;
@@ -37,6 +38,7 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<ToDoListsPage>();
         builder.Services.AddSingleton<TodoListsViewModel>();
 
         var app = builder.Build();

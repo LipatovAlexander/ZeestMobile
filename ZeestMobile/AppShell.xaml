@@ -4,12 +4,25 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ZeestMobile"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:pages="clr-namespace:ZeestMobile.Pages"
+    FlyoutBehavior="Disabled"
     Title="ZeestMobile">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    
+    <Shell.Resources>
+        <Style TargetType="Shell">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Primary}" />
+        </Style>
+    </Shell.Resources>
+    
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="ToDo Lists"
+            ContentTemplate="{DataTemplate pages:ToDoListsPage}"
+            Route="ToDoLists"/>
+    </TabBar>
+    
 </Shell>

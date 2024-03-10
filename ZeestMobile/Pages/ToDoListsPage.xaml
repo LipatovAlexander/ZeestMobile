@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ZeestMobile.ViewModels"
+             x:Class="ZeestMobile.Pages.ToDoListsPage"
+             x:DataType="viewModels:TodoListsViewModel">
+    <ContentPage.Content>
+        
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="Todo list name" TextChanged="TodoList_OnTextChanged" Text="{Binding NewListName}" />
+                <Button Text="Add" Command="{Binding AddItemCommand}" />
+            </HorizontalStackLayout>
+            
+            <ListView x:Name="TodoLists" ItemsSource="{Binding TodoLists}" ItemSelected="ListView_OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="viewModels:TodoListViewModel">
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="16" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
