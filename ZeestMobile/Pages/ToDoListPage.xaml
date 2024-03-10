@@ -27,11 +27,18 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:TodoItem">
                         <StackLayout>
-                            <Label Text="{Binding Text}" FontSize="16" />
+                            <HorizontalStackLayout>
+                                <CheckBox IsChecked="{Binding Done}" 
+                                          CheckedChanged="CheckBox_OnCheckedChanged"
+                                          Color="Brown"/>
+                                <Label Text="{Binding Text}" FontSize="16" />
+                            </HorizontalStackLayout>
+
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

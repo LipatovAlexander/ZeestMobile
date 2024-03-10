@@ -68,4 +68,10 @@ public class TodoListViewModel : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
+
+    public async Task UpdateAsync(TodoItem toDoItem)
+    {
+        _applicationContext.TodoItems.Update(toDoItem);
+        await _applicationContext.SaveChangesAsync();
+    }
 }
