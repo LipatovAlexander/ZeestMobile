@@ -26,7 +26,7 @@ public partial class ToDoListsPage : ContentPage
         {
             var selectedItem = (TodoListViewModel)e.SelectedItem;
             TodoLists.SelectedItem = null;
-            await Navigation.PushAsync(new ToDoItemsPage(selectedItem));
+            await Navigation.PushAsync(new ToDoListPage(selectedItem));
         }
     }
 }

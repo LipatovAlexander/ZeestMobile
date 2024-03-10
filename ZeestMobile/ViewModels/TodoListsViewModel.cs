@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
 using ZeestMobile.Infrastructure.EntityFramework;
 using ZeestMobile.Model;
 
@@ -17,8 +18,9 @@ public class TodoListsViewModel : INotifyPropertyChanged
     {
         _applicationContext = applicationContext;
         var lists = _applicationContext.TodoLists
+            .Include(tl => tl.Items)
             .ToList()
-            .Select(l => new TodoListViewModel(l));
+            .Select(l => new TodoListViewModel(l, applicationContext));
         
         TodoLists = new ObservableCollection<TodoListViewModel>(lists);
 
@@ -56,7 +58,7 @@ public class TodoListsViewModel : INotifyPropertyChanged
         _applicationContext.TodoLists.Add(todoList);
         _applicationContext.SaveChanges();
         
-        TodoLists.Add(new TodoListViewModel(todoList));
+        TodoLists.Add(new TodoListViewModel(todoList, _applicationContext));
         OnPropertyChanged(nameof(TodoLists));
 
         NewListName = null!;
