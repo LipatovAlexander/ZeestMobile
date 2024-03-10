@@ -23,6 +23,10 @@
             Title="ToDo Lists"
             ContentTemplate="{DataTemplate pages:ToDoListsPage}"
             Route="ToDoLists"/>
+        <ShellContent
+            Title="Onboarding"
+            ContentTemplate="{DataTemplate pages:OnboardingPage}"
+            Route="Onboarding"/>
     </TabBar>
     
 </Shell>
