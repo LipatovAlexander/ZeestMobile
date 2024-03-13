@@ -18,10 +18,15 @@
             Padding="30,0"
             Spacing="25">
             
-            <HorizontalStackLayout Spacing="10">
-                <Entry Placeholder="Todo list name" TextChanged="TodoItem_OnTextChanged" Text="{Binding NewItemName}" />
-                <Button Text="Add" Command="{Binding AddItemCommand}" />
-            </HorizontalStackLayout>
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" ColumnSpacing="10">
+                <Entry Grid.Column="0"
+                       Placeholder="Todo list name"
+                       TextChanged="TodoItem_OnTextChanged"
+                       Text="{Binding NewItemName}" />
+                <Button Grid.Column="1"
+                        Text="Add"
+                        Command="{Binding AddItemCommand}" />
+            </Grid>
             
             <CollectionView ItemsSource="{Binding TodoItems}">
                 <CollectionView.ItemTemplate>

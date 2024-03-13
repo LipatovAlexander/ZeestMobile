@@ -11,10 +11,15 @@
             Padding="30,0"
             Spacing="25">
 
-            <HorizontalStackLayout Spacing="10">
-                <Entry Placeholder="Todo list name" TextChanged="TodoList_OnTextChanged" Text="{Binding NewListName}" />
-                <Button Text="Add" Command="{Binding AddItemCommand}" />
-            </HorizontalStackLayout>
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" ColumnSpacing="10">
+                <Entry Grid.Column="0"
+                       Placeholder="Todo list name"
+                       TextChanged="TodoList_OnTextChanged"
+                       Text="{Binding NewListName}" />
+                <Button Grid.Column="1"
+                        Text="Add"
+                        Command="{Binding AddItemCommand}" />
+            </Grid>
             
             <ListView x:Name="TodoLists" ItemsSource="{Binding TodoLists}" ItemSelected="ListView_OnItemSelected">
                 <ListView.ItemTemplate>
