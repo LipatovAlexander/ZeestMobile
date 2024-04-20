@@ -40,6 +40,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<ToDoListsPage>();
         builder.Services.AddSingleton<TodoListsViewModel>();
+        builder.Services.AddSingleton<SettingsPage>();
 
         var app = builder.Build();
 

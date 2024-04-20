@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeestMobile", "ZeestMobile\ZeestMobile.csproj", "{E3DA56E6-427B-426F-8876-02FDD64BF7A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{ED96424D-24FC-4138-AD22-E04395593531}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{E3DA56E6-427B-426F-8876-02FDD64BF7A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3DA56E6-427B-426F-8876-02FDD64BF7A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3DA56E6-427B-426F-8876-02FDD64BF7A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED96424D-24FC-4138-AD22-E04395593531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED96424D-24FC-4138-AD22-E04395593531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED96424D-24FC-4138-AD22-E04395593531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED96424D-24FC-4138-AD22-E04395593531}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -27,6 +27,10 @@
             Title="Onboarding"
             ContentTemplate="{DataTemplate pages:OnboardingPage}"
             Route="Onboarding"/>
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate pages:SettingsPage}"
+            Route="Settings"/>
     </TabBar>
     
 </Shell>

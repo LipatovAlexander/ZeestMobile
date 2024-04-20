@@ -1,4 +1,4 @@
-namespace ZeestMobile.Model;
+namespace Services.Model;
 
 public class TodoItem(string text, bool done, DateTime deadline)
 {

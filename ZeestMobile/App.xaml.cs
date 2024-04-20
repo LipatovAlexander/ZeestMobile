@@ -17,5 +17,15 @@ public partial class App : Application
         {
             Shell.Current.GoToAsync("//Onboarding").GetAwaiter().GetResult();
         }
+
+        if (!Preferences.ContainsKey("user_id"))
+        {
+            Preferences.Set("user_id", Guid.NewGuid().ToString());
+        }
+
+        if (!Preferences.ContainsKey("synced_at"))
+        {
+            Preferences.Set("synced_at", DateTime.MinValue);
+        }
     }
 }

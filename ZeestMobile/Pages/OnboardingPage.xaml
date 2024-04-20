@@ -24,8 +24,8 @@
             </Label>
             
             <HorizontalStackLayout>
-                <Label>Skip onboarding in future?</Label>
                 <CheckBox IsChecked="{Binding IsChecked}" CheckedChanged="CheckBox_OnCheckedChanged"/>
+                <Label>Skip onboarding in future?</Label>
             </HorizontalStackLayout>
             
         </VerticalStackLayout>

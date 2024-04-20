@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using ZeestMobile.Model;
 using ZeestMobile.ViewModels;
 
@@ -28,5 +29,21 @@ public partial class ToDoListPage : ContentPage
         toDoItem.Done = e.Value;
 
         await _todoListViewModel.UpdateAsync(toDoItem);
+    }
+    
+    
+    private void BindableObject_OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != "Time" || sender is not TimePicker timePicker)
+        {
+            return;
+        }
+
+        _todoListViewModel.DeadlineTimeOnly = TimeOnly.FromTimeSpan(timePicker.Time);
+    }
+
+    private void DatePicker_OnDateSelected(object? sender, DateChangedEventArgs e)
+    {
+        _todoListViewModel.DeadlineDateOnly = DateOnly.FromDateTime(e.NewDate);
     }
 }

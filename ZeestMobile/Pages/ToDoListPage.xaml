@@ -18,14 +18,26 @@
             Padding="30,0"
             Spacing="25">
             
-            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" ColumnSpacing="10">
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10">
                 <Entry Grid.Column="0"
+                       Grid.Row="0"
                        Placeholder="Todo list name"
                        TextChanged="TodoItem_OnTextChanged"
                        Text="{Binding NewItemName}" />
                 <Button Grid.Column="1"
+                        Grid.Row="0"
                         Text="Add"
                         Command="{Binding AddItemCommand}" />
+                <DatePicker Grid.Column="0"
+                            Grid.Row="1"
+                            Date="{Binding DeadlineDateOnly}"
+                            DateSelected="DatePicker_OnDateSelected"
+                            Format="D" />
+                <TimePicker Grid.Column="0"
+                            Grid.Row="2"
+                            Time="{Binding DeadlineTimeOnly}"
+                            PropertyChanged="BindableObject_OnPropertyChanged"
+                            Format="t" />
             </Grid>
             
             <CollectionView ItemsSource="{Binding TodoItems}">
@@ -37,6 +49,7 @@
                                           CheckedChanged="CheckBox_OnCheckedChanged"
                                           Color="Brown"/>
                                 <Label Text="{Binding Text}" FontSize="16" />
+                                <Label Text="{Binding Deadline}"></Label>
                             </HorizontalStackLayout>
 
                         </StackLayout>

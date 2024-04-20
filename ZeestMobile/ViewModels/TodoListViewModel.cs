@@ -23,6 +23,20 @@ public class TodoListViewModel : INotifyPropertyChanged
         set => SetField(ref _newItemName, value);
     }
 
+    private DateOnly _deadlineDateOnly = DateOnly.FromDateTime(DateTime.Now).AddDays(1);
+    public DateOnly DeadlineDateOnly
+    {
+        get => _deadlineDateOnly;
+        set => SetField(ref _deadlineDateOnly, value);
+    }
+
+    private TimeOnly _deadlineTimeOnly = TimeOnly.FromDateTime(DateTime.Now);
+    public TimeOnly DeadlineTimeOnly
+    {
+        get => _deadlineTimeOnly;
+        set => SetField(ref _deadlineTimeOnly, value);
+    }
+
     public ObservableCollection<TodoItem> TodoItems { get; }
 
     private readonly ApplicationContext _applicationContext;
@@ -44,7 +58,7 @@ public class TodoListViewModel : INotifyPropertyChanged
             return;
         }
 
-        var item = new TodoItem(NewItemName, false);
+        var item = new TodoItem(NewItemName, false, DeadlineDateOnly.ToDateTime(DeadlineTimeOnly));
 
         _todoList.Items.Add(item);
         
