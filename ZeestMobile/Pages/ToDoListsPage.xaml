@@ -21,7 +21,7 @@
                         Command="{Binding AddItemCommand}" />
             </Grid>
             
-            <ListView x:Name="TodoLists" ItemsSource="{Binding TodoLists}" ItemSelected="ListView_OnItemSelected">
+            <ListView MinimumHeightRequest="100" x:Name="TodoLists" ItemsSource="{Binding TodoLists}" ItemSelected="ListView_OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:TodoListViewModel">
                         <ViewCell>

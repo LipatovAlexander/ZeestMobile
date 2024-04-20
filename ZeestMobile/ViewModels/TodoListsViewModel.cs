@@ -17,13 +17,9 @@ public class TodoListsViewModel : INotifyPropertyChanged
     public TodoListsViewModel(ApplicationContext applicationContext)
     {
         _applicationContext = applicationContext;
-        var lists = _applicationContext.TodoLists
-            .Include(tl => tl.Items)
-            .ToList()
-            .Select(l => new TodoListViewModel(l, applicationContext));
-        
-        TodoLists = new ObservableCollection<TodoListViewModel>(lists);
+        TodoLists = new ObservableCollection<TodoListViewModel>();
 
+        Refresh();
         AddItemCommand = new Command(AddTodoList);
     }
 
@@ -52,7 +48,7 @@ public class TodoListsViewModel : INotifyPropertyChanged
         
         var todoList = new TodoList(NewListName)
         {
-            Items = []
+            ToDoItems = []
         };
 
         _applicationContext.TodoLists.Add(todoList);
@@ -69,5 +65,18 @@ public class TodoListsViewModel : INotifyPropertyChanged
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public void Refresh()
+    {
+        var lists = _applicationContext.TodoLists
+            .ToList()
+            .Select(l => new TodoListViewModel(l, _applicationContext));
+        
+        TodoLists.Clear();
+        foreach (var e in lists)
+        {
+            TodoLists.Add(e);
+        }
     }
 }

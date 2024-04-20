@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ZeestMobile.Infrastructure.EntityFramework;
 using ZeestMobile.Infrastructure.Migrations;
 using ZeestMobile.Pages;
+using ZeestMobile.Services;
 using ZeestMobile.ViewModels;
 
 namespace ZeestMobile;
@@ -41,7 +42,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<ToDoListsPage>();
         builder.Services.AddSingleton<TodoListsViewModel>();
         builder.Services.AddSingleton<SettingsPage>();
-
+        builder.Services.AddSingleton<Synchronizer>();
+        builder.Services.AddSingleton<LoginPage>();
+        builder.Services.AddSingleton<App>();
+        
         var app = builder.Build();
 
         using var scope = app.Services.CreateScope();

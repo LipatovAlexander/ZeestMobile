@@ -11,7 +11,8 @@
         Spacing="25">
         
         <Label>Home</Label>
-        
+        <Button Text="Log out"
+                Clicked="Logout"/>
     </VerticalStackLayout>
 
 </ContentPage>

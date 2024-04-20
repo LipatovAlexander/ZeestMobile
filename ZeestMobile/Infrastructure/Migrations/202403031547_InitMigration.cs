@@ -10,13 +10,7 @@ public class InitMigration : ForwardOnlyMigration
         Create
             .Table("TodoLists")
             .WithColumn("Id").AsInt32().PrimaryKey().Identity()
-            .WithColumn("Name").AsString().NotNullable();
-
-        Create
-            .Table("TodoItems")
-            .WithColumn("Id").AsInt32().PrimaryKey().Identity()
-            .WithColumn("TodoListId").AsInt32().ForeignKey("TodoLists", "Id").Indexed()
-            .WithColumn("Text").AsString().NotNullable()
-            .WithColumn("Done").AsBoolean().NotNullable();
+            .WithColumn("Name").AsString().NotNullable()
+            .WithColumn("ToDoItems").AsString().NotNullable();
     }
 }

@@ -47,7 +47,7 @@ public class TodoListViewModel : INotifyPropertyChanged
     {
         _todoList = todoList;
         AddItemCommand = new Command(AddToDoItem);
-        TodoItems = new ObservableCollection<TodoItem>(todoList.Items);
+        TodoItems = new ObservableCollection<TodoItem>(todoList.ToDoItems);
         _applicationContext = applicationContext;
     }
 
@@ -60,7 +60,7 @@ public class TodoListViewModel : INotifyPropertyChanged
 
         var item = new TodoItem(NewItemName, false, DeadlineDateOnly.ToDateTime(DeadlineTimeOnly));
 
-        _todoList.Items.Add(item);
+        _todoList.ToDoItems.Add(item);
         
         _applicationContext.SaveChanges();
         
@@ -85,7 +85,6 @@ public class TodoListViewModel : INotifyPropertyChanged
 
     public async Task UpdateAsync(TodoItem toDoItem)
     {
-        _applicationContext.TodoItems.Update(toDoItem);
         await _applicationContext.SaveChangesAsync();
     }
 }

@@ -20,6 +20,11 @@ public partial class ToDoListsPage : ContentPage
         _todoListsViewModel.NewListName = text;
     }
 
+    protected override void OnAppearing()
+    {
+        _todoListsViewModel.Refresh();
+    }
+
     private async void ListView_OnItemSelected(object? sender, SelectedItemChangedEventArgs e)
     {
         if (e.SelectedItem != null)
