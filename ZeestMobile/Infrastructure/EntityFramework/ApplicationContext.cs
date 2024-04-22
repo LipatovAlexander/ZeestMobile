@@ -12,7 +12,6 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TodoList>()
-            .HasNoKey()
             .Property(x => x.ToDoItems)
             .HasConversion(
                 x => JsonSerializer.Serialize(x, JsonSerializerOptions.Default),

@@ -24,6 +24,7 @@ public static class MauiProgram
 
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "zeest.db");
         var connectionString = $"FileName={dbPath}";
+        Console.WriteLine(connectionString);
         builder.Services.AddDbContext<ApplicationContext>(options =>
         {
             options.UseSqlite(connectionString);

@@ -9,7 +9,7 @@ public class InitMigration : ForwardOnlyMigration
     {
         Create
             .Table("TodoLists")
-            .WithColumn("Id").AsInt32().PrimaryKey().Identity()
+            .WithColumn("Id").AsGuid().PrimaryKey()
             .WithColumn("Name").AsString().NotNullable()
             .WithColumn("ToDoItems").AsString().NotNullable();
     }

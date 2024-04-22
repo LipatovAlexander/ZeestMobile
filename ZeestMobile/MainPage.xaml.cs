@@ -26,11 +26,10 @@ public partial class MainPage : ContentPage
         // Меняем MainPage или навигируем к другой странице
         Application.Current.MainPage = _loginPage;
         
-        await _synchronizer.SyncAsync();
         Preferences.Set("synced_at", DateTime.MinValue);
 
        await _applicationContext.TodoLists
             .ExecuteDeleteAsync();
-
+       _applicationContext.ChangeTracker.Clear();
     }
 }

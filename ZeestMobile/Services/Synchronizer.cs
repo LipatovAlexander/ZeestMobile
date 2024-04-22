@@ -28,11 +28,28 @@ public class Synchronizer(ApplicationContext applicationContext)
         
         Preferences.Set("synced_at", r!.SyncedAt);
 
-        applicationContext.TodoLists.RemoveRange(lists);
-        await applicationContext.SaveChangesAsync();
+        var serverListIds = r.Lists.Select(l => l.Id).ToHashSet();
+        applicationContext.TodoLists.RemoveRange(lists.Where(l => !serverListIds.Contains(l.Id)));
 
-        applicationContext.TodoLists.AddRange(r.Lists);
+        // Обновление существующих листов и добавление новых
+        foreach (var list in r.Lists)
+        {
+            var existingList = await applicationContext.TodoLists.FindAsync(list.Id);
+            if (existingList != null)
+            {
+                existingList.ToDoItems = list.ToDoItems;
+                existingList.Name = list.Name;
+            }
+            else
+            {
+                applicationContext.TodoLists.Add(list);
+            }
+        }
+
+        // Сохранение изменений в БД
         await applicationContext.SaveChangesAsync();
+        
+        applicationContext.ChangeTracker.Clear();
     }
 }
 
