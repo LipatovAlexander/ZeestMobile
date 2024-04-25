@@ -11,6 +11,7 @@ public class InitMigration : ForwardOnlyMigration
             .Table("TodoLists")
             .WithColumn("Id").AsGuid().PrimaryKey()
             .WithColumn("Name").AsString().NotNullable()
+            .WithColumn("Geolocation").AsString().NotNullable()
             .WithColumn("ToDoItems").AsString().NotNullable();
     }
 }

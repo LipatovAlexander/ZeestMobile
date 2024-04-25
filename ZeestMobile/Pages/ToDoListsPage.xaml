@@ -28,6 +28,7 @@
                             <ViewCell.View>
                                 <StackLayout>
                                     <Label Text="{Binding Name}" FontSize="16" />
+                                    <Label Text="{Binding Geolocation}" FontSize="16" />
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

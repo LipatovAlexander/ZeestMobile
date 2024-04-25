@@ -12,6 +12,8 @@ public class TodoListViewModel : INotifyPropertyChanged
     private readonly TodoList _todoList;
     public string Name => _todoList.Name;
 
+    public string Geolocation => _todoList.Geolocation;
+    
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public ICommand AddItemCommand { get; set; }

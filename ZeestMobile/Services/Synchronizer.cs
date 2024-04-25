@@ -13,7 +13,7 @@ public class Synchronizer(ApplicationContext applicationContext)
             .ToListAsync();
 
         using var httpClient = new HttpClient();
-        var response = await httpClient.PostAsJsonAsync("http://localhost:5015/api/sync", new
+        var response = await httpClient.PostAsJsonAsync("https://0280-217-113-12-12.ngrok-free.app:5015/api/sync", new
         {
             syncedAt = Preferences.Get("synced_at", DateTime.MinValue).ToString("O"),
             lists,
