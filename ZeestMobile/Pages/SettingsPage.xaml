@@ -4,8 +4,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZeestMobile.Pages.SettingsPage">
     <ContentPage.Content>
-        <Button
-                Text="Sync"
-                Clicked="Button_OnClicked"/>
+        <StackLayout VerticalOptions="Center"
+                     HorizontalOptions="Center">
+            <Button Text="Sync data with server"
+                    Clicked="Button_OnClicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
