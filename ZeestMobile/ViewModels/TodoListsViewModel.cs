@@ -18,7 +18,6 @@ public class TodoListsViewModel : INotifyPropertyChanged
         _applicationContext = applicationContext;
         TodoLists = new ObservableCollection<TodoListViewModel>();
 
-        Accelerometer.ShakeDetected += OnShakeDetected;
         StartShakeDetection();
         
         Refresh();
@@ -114,38 +113,32 @@ public class TodoListsViewModel : INotifyPropertyChanged
     // Метод для запуска обнаружения встряхиваний
     private void StartShakeDetection()
     {
-        try
+        if (Accelerometer.Default.IsSupported)
         {
-            // Установка величины чувствительности датчика при которой считается что было встряхивание
-            // Этот параметр можно настроить в зависимости от ваших предпочтений
-            Accelerometer.Start(SensorSpeed.UI);
+            if (!Accelerometer.Default.IsMonitoring)
+            {
+                // Turn on accelerometer
+                Accelerometer.Default.ShakeDetected += OnShakeDetected;
+                Accelerometer.Default.Start(SensorSpeed.UI);
+            }
+            else
+            {
+                // Turn off accelerometer
+                Accelerometer.Default.Stop();
+                Accelerometer.Default.ShakeDetected -= OnShakeDetected;
+            }
         }
-        catch (FeatureNotSupportedException fnsEx)
+        else
         {
-            // Ошибка если акселерометр не поддерживается на устройстве
+            Console.WriteLine("Not supported");
         }
-        // Обработка других потенциальных ошибок...
     }
 
-// Метод отписки от акселерометра при необходимости
-    private void StopShakeDetection()
+    private void OnShakeDetected(object? sender, EventArgs e)
     {
-        Accelerometer.Stop();
-        Accelerometer.ShakeDetected -= OnShakeDetected;
+        MainThread.BeginInvokeOnMainThread(ShuffleTodoLists);
     }
 
-// Обработчик встряхивания
-    private void OnShakeDetected(object sender, EventArgs e)
-    {
-        // Текущий dispatcher вызовет данную функцию в UI потоке
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            // Вызов метода для перемешивания списка задач
-            ShuffleTodoLists();
-        });
-    }
-
-// Метод для перемешивания списка задач
     private void ShuffleTodoLists()
     {
         var random = new Random();
